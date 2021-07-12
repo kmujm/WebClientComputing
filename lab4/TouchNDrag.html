@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>이미지 슬라이더</title>
+    <script src="jquery-3.1.0.js"></script>
+    <script>
+        $(document).ready(function () {
+            var box_isclick = false;
+            var box_inipos = 0;
+            var box_moving = 0;
+            var box_origin = 0;
+            var myWidth = 0;
+            var init = true;
+            var iniX;
+
+            //$('#box').css('margin-left','0px').css('border-left','0px').css('padding-left','0px');
+            $('#box').on({
+                "touchstart mousedown": function(e) {
+                    e.preventDefault();
+                    box_isclick = true; // 이동 시작
+                    box_origin = $(this).offset().left;
+                    box_moving = 0;
+                    if(init) { init = false; iniX = $(this).offset().left; }
+                    myWidth = this.getBoundingClientRect().width; // 녹색의 사이즈 
+                },
+                "touchstart": function(e) { // 손가락
+                    box_inipos = e.originalEvent.touches[0].screenX;
+                },
+                "mousedown": function(e) { // 마우스
+                    box_inipos = e.pageX;
+                },
+                "touchmove": function(e) {
+                    e.preventDefault();
+                    if(box_isclick) {
+                        box_moving = e.originalEvent.touches[0].screenX - box_inipos;
+                        $(this).css('transform','translateX('+(box_origin+box_moving)+'px)');
+                    }
+                },
+                "mousemove": function(e) {
+                    if(box_isclick) {
+                        box_moving = e.pageX - box_inipos;
+                        $(this).css('transform','translateX('+(box_origin+box_moving)+'px)');
+                    }
+                },
+                "touchend mouseup": function(e) {
+                    box_isclick = false;
+                    if($(this).offset().left < 0)
+                        $(this).css('transform','translateX(0px)');
+                    else {
+                         let t = (box_origin+box_moving-iniX) / myWidth; // iniX : 창의 끝과 처음 시작점이 떨어진 거리
+                         t = myWidth * ((box_moving > 0) ? Math.ceil(t) : Math.floor(t));
+                         $(this).css('transform','translateX('+(t)+'px)');
+                    }
+                }
+            })
+       });
+    </script>
+</head>
+
+<body>
+
+    <div id="box" style="width:200px; height:200px; background:green; position:absolute;">
+    </div>
+
+</body>
+</html>

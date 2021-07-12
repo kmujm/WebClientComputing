@@ -1,0 +1,121 @@
+
+0. 자바스크립트 실행환경(node) 개요
+-----------------------------------
+
+  - 자바스크립트 실행환경(node 혹은 node.js)는 다음과 같은 3가지 명령어를 제공한다.
+
+        node, npm, npx
+
+        node  // 자바스크립트 단위 프로그램 파일 실행 명령어
+        npm   // 디폴트 패키지 관리자 도구
+              // 자바스크립트 라이브러리 설치, 프로젝트 실행 기능, ...
+        npx   // npm과 node의 연동 명령어로 라이브러리 설치에 이어서 프로젝트 실행까지 진행
+
+  - node의 최신 안정화(stable, LTS) 버전 번호는 다음사이트의 왼쪽 아래 박스에 적혀 있다.
+
+ 	https://nodejs.org/en/
+
+          (2021년2월22일 기준, 안정화 버전)  14.15.5 LTS
+
+
+1. nvm (node 버전관리 도구) 설치
+--------------------------------
+
+  - 아래 사이트에서 파일다운로드(버전1.1.7, "nvm-setup.zip"), 압축해제, 설치파일 실행
+
+	https://github.com/coreybutler/nvm-windows/releases
+
+  - 설치 여부 확인하려면 powershell 코맨드 창을 열고 다음 명령어 실행
+
+        > nvm v   // 설치 확인
+
+          --> 1.1.7
+
+        > nvm install v14.15.5  // node 최신 버전(v.14.15.5 LTS) 설치
+
+        > nvm ls   // 기 설치된 모든 node 버전 출력
+
+          (출력예)  // 새로 설치한 버전14 외에 10, 8.15, 8.1번 버전이 있으며 10번이 사용중임
+            14.15.5
+            * 10.15.3 (Currently using 64-bit executable)
+            8.15.1
+            8.1.4
+
+        > nvm use v14.15.5   // 새로 설치된 버전(v.14.15.5 LTS)을 사용하도록 설정 변경
+        > nvm ls  
+
+          (출력예)  // 새로 설치한 버전14가 활성화됨
+
+            * 14.15.5 (Currently using 64-bit executable)
+            10.15.3
+            8.15.1
+            8.1.4
+
+	> node -v   // v14.15.5
+	> npm -v    // 6.14.11
+	> npx -v    // 6.14.11
+
+
+  - (설치 참고사이트) 
+
+	(Window) https://sysong85.tistory.com/82
+	(Mac) https://gofnrk.tistory.com/32
+	(Linux) https://ko.linux-console.net/?p=6
+
+
+2. (옵션) yarn 설치   // npm 보다 편리한 패키지 관리 도구
+
+  - 다음 명령어로 글로벌 설치
+
+	> npm i -g yarn
+
+  - 윈도우 운영체제에서 다음 에러가 발생하는 경우, 관리자모드로 powershell창(터미널창)을 생성하여 
+    외부 스크립트 실행 설정을 아래와 같이 변경	
+
+	(에러메시지)
+	   yarn : 이 시스템에서 스크립트를 실행할 수 없으므로 D:\Program Files\nodejs\yarn.ps1 
+           파일을 로드할 수 없습니다....
+
+        (관리자모드로 powershell창 생성 후 다음 명령 실행)
+
+	   > Get-ExecutionPolicy   // Restricted
+	   > Set-ExecutionPolicy RemoteSigned   // 설정 변경
+	   > Get-ExecutionPolicy   // RemoteSigned
+
+
+3. Visual Studio Code(VS Code) 설치   // 대표적인 프로그램 에디터
+
+ (1) VS Code 다운로드/설치
+
+	- 아래 사이트에서 운영체제 별로 해당 다운로드 버튼을 클릭  --> 설치 프로그램 실행
+
+	    https://code.visualstudio.com/Download
+
+ (2) Code Runner 확장 프로그램 설치
+
+	- 왼쪽 위 Extensions의 검색창에서 "code runner"를 검색, Code Runner 설치 (<Install> 버튼 클릭)
+
+	    https://enai.tistory.com/20
+
+ (3) open in browser 설치
+
+	- 왼쪽 위 Extensions의 검색창에서 "open in browser"를 검색, 설치 (<Install> 버튼 클릭)
+
+ (4) default browser를 크롬으로 변경
+
+	- ctrl+shift+p (모든 명령 표시) 단축키를 누르고, settings를 검색하여 settings.json 파일을 열거나,
+	  File -> Preferences -> Settings -> 우측 위의 Open Settings (JSON) 버튼 클릭하여 
+          settings.json 파일을 연다.
+
+	- settings.json 안에 "open-in-browser.default": "chrome"을 다음과 같이 추가 
+            (JSON 데이터 구분 콤마(,)를 윗줄에 추가하는 것을 주의)
+
+		{
+		    "window.zoomLevel": 0,
+		    "open-in-browser.default": "chrome"
+		}
+ 
+ (5) Debugger for Chrome 설치
+
+	- 왼쪽 위 Extensions의 검색창에서 "Debugger for Chrome"를 검색, 설치 (<Install> 버튼 클릭)
+

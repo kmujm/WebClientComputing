@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>이미지 슬라이더</title>
+    <script src="jquery-3.1.0.js"></script>
+    <script src="slider.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.slider').imageSlider({
+                width: 965,
+                height: 600
+            });
+
+            $('.slider2').imageSlider({
+                width: 965,
+                height: 600
+            });
+        });
+    </script>
+</head>
+<body>
+    <br> <br>
+
+    <div class="slider">
+        <div class="images">
+            <img class="image" src="http://placehold.it/460x300?text=image_0" />
+            <img class="image" src="http://placehold.it/460x300?text=image_1" />
+            <img class="image" src="snapshot.png" />
+            <img class="image" src="http://placehold.it/460x300?text=image_3" />
+            <div class="image">
+                <h1>이미지가 아닌 것</h1>
+                <p>Lorem ipsum dolor sit amet.</p>
+            </div>
+        </div>
+    </div>
+
+    <br> <br>
+
+    <div class="slider2">
+        <div class="images">
+            <img class="image" src="http://placehold.it/460x300?text=image_0" />
+            <img class="image" src="http://placehold.it/460x300?text=image_1" />
+            <img class="image" src="http://placehold.it/460x300?text=image_2" />
+            <img class="image" src="http://placehold.it/460x300?text=image_3" />
+            <div class="image">
+                <h1>이미지가 아닌 것2</h1>
+                <p>Lorem2 ipsum dolor sit amet.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

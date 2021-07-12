@@ -1,0 +1,11 @@
+.movie_data {
+    height: auto;
+    align-items: center;
+}
+
+.movie_img {
+    margin-left: 180px;
+}
+.movie_info span{
+    margin-right: 80px;
+}
